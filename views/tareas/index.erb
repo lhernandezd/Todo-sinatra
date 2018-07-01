@@ -1,0 +1,47 @@
+<h1>Tareas</h1>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <h2>Tareas Completadas</h2>
+    <ul class="list-group">
+    <% @items.each do |item| %>
+      <% if item["done"]%>
+      <li class="list-group-item d-flex justify-content-between">
+        <a class="mt-2" style="text-decoration:none; color:black;" href="/todos/<%= item["id"] %>">
+          <%= item["title"] %>
+        </a>
+        <div class="d-inline">
+          <a href="/tareas/<%= item["id"] %>/done" class="btn btn-dark"><%= item["done"] ? "Done" : "Not done"%></a>
+          <a class="btn btn-danger" href="/tareas/<%= item["id"] %>/delete">
+            Delete
+          </a>
+        </div>
+      </li>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <h2>Tareas No Completadas</h2>
+    <ul class="list-group">
+    <% @items.each do |item| %>
+      <% unless item["done"]%>
+      <li class="list-group-item d-flex justify-content-between">
+        <a class="mt-2" style="text-decoration:none; color:black;" href="/todos/<%= item["id"] %>">
+          <%= item["title"] %>
+        </a>
+        <div class="d-inline">
+          <a href="/tareas/<%= item["id"] %>/done" class="btn btn-dark"><%= item["done"] ? "Done" : "Not done"%></a>
+          <a class="btn btn-danger" href="/tareas/<%= item["id"] %>/delete">
+            Delete
+          </a>
+        </div>
+      </li>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
